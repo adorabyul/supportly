@@ -1,18 +1,42 @@
-<script setup lang="ts">
+<script lang="ts">
+  import { defineComponent, ref } from 'vue';
 
+  export default defineComponent({
+  name: 'Chat',
+  setup() {
+    const newMessage = ref('');
+    const messages = ref<string[]>([]);
+
+    const sendMessage = async () => {
+      if (newMessage.value.trim()) {
+
+        messages.value.push(newMessage.value);
+        newMessage.value = ''; 
+      }
+    };
+
+    return {
+      newMessage,
+      messages,
+      sendMessage
+    };
+  }
+});
 </script>
 
 <template>
     <div class="chat-container">
         <div class="messages">
-              <div class="message bot">Hej! Vad kan jag hjälpa dig med?</div>
-              <div class="message user">Hej! Jag behöver hjälp.</div>
+              <p class="message bot">Hej! Vad kan jag hjälpa dig med?</p>
+              <p class="message user" v-for="(message, index) in messages" :key="index">{{ message }}</p>
         </div>
         <div class="input-container">
           <input type="text"
           placeholder="Type a message..."
+          @keyup.enter="sendMessage"
+          v-model="newMessage"
           >
-          <button>➤</button>
+          <button @click="sendMessage">➤</button>
         </div>
     </div>
 
@@ -65,7 +89,7 @@ button:hover {
 .bot {
   background-color: rgb(196, 196, 196);
   border-radius: 0.3em;
-  padding: 0.4em;
+  padding: 0.3em;
   margin-left: 0.2em;
   margin-right: auto;
   width: 75%;
@@ -76,7 +100,7 @@ button:hover {
   background-color: rgb(68, 62, 243);
   color: white;
   border-radius: 0.3em;
-  padding: 0.4em;
+  padding: 0.3em;
   margin-right: 0.2em;
   margin-left: auto;
   max-width: 75%;
@@ -86,7 +110,7 @@ button:hover {
 .messages {
   display: flex;
   flex-direction: column;
-  gap: 0.7em;
+  gap: 0.1em;
   width: 100%;
   padding-top: 0.5em;
   font-family: "Roboto Flex", sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
