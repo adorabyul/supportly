@@ -1,18 +1,59 @@
-<script setup lang="ts">
+<script lang="ts">
+  import { defineComponent, ref, onMounted, onUnmounted } from 'vue';
+  import { WebSocketService } from "../services/chatService";
+
+  export default defineComponent({
+  name: 'Chat',
+  setup() {
+    const newMessage = ref('');
+    const messages = ref<{text: string, sender: string}[]>([]);
+    let wsService: WebSocketService | null = null;
+
+    onMounted(() => {
+      wsService = new WebSocketService("ws://localhost:8080");
+
+      wsService.setOnMessageCallback((message: string) => {
+        messages.value.push({text: message, sender: 'bot'});
+      });
+    });
+
+    onUnmounted(() => {
+      if (wsService) wsService.close();
+    });
+ 
+
+    const sendMessage = () => {
+      if (wsService && newMessage.value.trim()) {
+        messages.value.push({ text: newMessage.value, sender: 'user' });
+        wsService.sendMessage(newMessage.value);
+        newMessage.value = '';
+      }
+    };
+
+    return {
+      newMessage,
+      messages,
+      sendMessage
+    };
+  }
+});
+
 
 </script>
 
 <template>
     <div class="chat-container">
         <div class="messages">
-              <div class="message bot">Hej! Vad kan jag hjälpa dig med?</div>
-              <div class="message user">Hej! Jag behöver hjälp.</div>
+              <p class="message bot">Welcome to the chat! How can I assist you today?</p>
+              <p class="message" :class="message.sender" v-for="(message, index) in messages" :key="index">{{ message.text }}</p>
         </div>
         <div class="input-container">
           <input type="text"
           placeholder="Type a message..."
+          @keyup.enter="sendMessage"
+          v-model="newMessage"
           >
-          <button>➤</button>
+          <button @click="sendMessage">➤</button>
         </div>
     </div>
 
@@ -63,9 +104,9 @@ button:hover {
 }
 
 .bot {
-  background-color: rgb(196, 196, 196);
+  background-color: #b4b3b3;
   border-radius: 0.3em;
-  padding: 0.4em;
+  padding: 0.3em;
   margin-left: 0.2em;
   margin-right: auto;
   width: 75%;
@@ -73,10 +114,10 @@ button:hover {
 }
 
 .user {
-  background-color: rgb(68, 62, 243);
+  background-color: #4663ac;
   color: white;
   border-radius: 0.3em;
-  padding: 0.4em;
+  padding: 0.3em;
   margin-right: 0.2em;
   margin-left: auto;
   max-width: 75%;
@@ -86,7 +127,7 @@ button:hover {
 .messages {
   display: flex;
   flex-direction: column;
-  gap: 0.7em;
+  gap: 0.1em;
   width: 100%;
   padding-top: 0.5em;
   font-family: "Roboto Flex", sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
