@@ -7,6 +7,7 @@
   setup() {
     const newMessage = ref('');
     const messages = ref<{text: string, sender: string}[]>([]);
+    let isDisabled = ref(false);
     let wsService: WebSocketService | null = null;
 
     onMounted(() => {
@@ -14,6 +15,7 @@
 
       wsService.setOnMessageCallback((message: string) => {
         messages.value.push({text: message, sender: 'bot'});
+        isDisabled.value = false;
       });
     });
 
@@ -26,6 +28,7 @@
       if (wsService && newMessage.value.trim()) {
         messages.value.push({ text: newMessage.value, sender: 'user' });
         wsService.sendMessage(newMessage.value);
+        isDisabled.value = true;
         newMessage.value = '';
       }
     };
@@ -33,7 +36,8 @@
     return {
       newMessage,
       messages,
-      sendMessage
+      sendMessage,
+      isDisabled
     };
   }
 });
@@ -49,11 +53,12 @@
         </div>
         <div class="input-container">
           <input type="text"
+          :disabled="isDisabled"
           placeholder="Type a message..."
           @keyup.enter="sendMessage"
           v-model="newMessage"
           >
-          <button @click="sendMessage">➤</button>
+          <button @click="sendMessage" :disabled="isDisabled">➤</button>
         </div>
     </div>
 
