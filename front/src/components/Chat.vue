@@ -10,7 +10,7 @@
     let wsService: WebSocketService | null = null;
 
     onMounted(() => {
-      wsService = new WebSocketService("ws://localhost:8080");
+      wsService = new WebSocketService("ws://localhost:5000");
 
       wsService.setOnMessageCallback((message: string) => {
         messages.value.push({text: message, sender: 'bot'});
@@ -71,6 +71,7 @@
   width: 20em;
   background-color: rgb(248, 248, 248);
   border-radius: 0.5em;
+  
 }
 
 .input-container {
@@ -134,5 +135,13 @@ button:hover {
   font-optical-sizing: auto;
   font-weight: 350;
   font-style: normal;
+  overflow: scroll;
+}
+
+@media (max-width: 500px) {
+  .chat-container {
+    width: 100vw;
+    height: 90%;
+  }
 }
 </style>

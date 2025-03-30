@@ -22,8 +22,6 @@ import Chat from "./components/Chat.vue";
     justify-content: center;
     width: 100vw;
     height: 100svh;
-    min-width: 30em;
-    min-height: 30em;
     background-color: rgb(46, 46, 46);
   }
 
