@@ -5,11 +5,9 @@ export class WebSocketService {
     constructor(url: string) {
       this.ws = new WebSocket(url);
   
-      this.ws.onopen = () => console.log("WebSocket connected");
       this.ws.onmessage = (event) => {
         if (this.onMessageCallback) this.onMessageCallback(event.data);
       };
-      this.ws.onclose = () => console.log("WebSocket disconnected");
     }
   
     sendMessage(message: string) {
