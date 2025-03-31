@@ -5,10 +5,10 @@ let db: mysql.Connection;
 export async function getDB() {
   if (!db) {
     db = await mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "example",
-      database: "supportly",
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
     });
   }
   return db;
