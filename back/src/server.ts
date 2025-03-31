@@ -63,7 +63,7 @@ wss.on("connection", (ws) => {
   });
 
 
-app.post("/transcribe", upload.single("audio"), async (req: Request, res: Response) => {
+app.post("/transcribe", upload.single("file"), async (req: Request, res: Response) => {
   try {
     if (!req.file) {
       return res.status(400).json({ error: "No audio file uploaded" });
