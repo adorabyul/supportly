@@ -12,9 +12,9 @@ import path from "path";
 
 dotenv.config();
 
-const wss = new WebSocketServer({ port: 5000 });
+const wss = new WebSocketServer({ port: Number(process.env.WEBSOCKET_PORT) });
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.API_PORT || 3000;
 
 const storage = multer.diskStorage({
   destination: (_req, _file, cb) => {
