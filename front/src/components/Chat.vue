@@ -42,7 +42,7 @@
         const transcription = response.transcription.text;
         const botreply = response.text;
 
-        messages.value.push({text: transcription, sender: transcription.length < 20 ? 'user_audio_short' : 'user_audio_long'})
+        messages.value.push({text: transcription, sender: transcription.length < 24 ? 'user_audio_short' : 'user_audio_long'})
         messages.value.push({text: botreply, sender: 'bot'})
         audioUrl.value = null;
         isDisabled.value = false;
@@ -252,6 +252,7 @@ img {
   position: absolute;
   top: -15px;
   font-size: 0.9em;
+  white-space: nowrap;
   color: black;
 }
 .user_audio_short {

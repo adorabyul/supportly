@@ -70,10 +70,6 @@ app.post("/transcribe", upload.single("file"), async (req: Request, res: Respons
     }
 
     const audioPath = req.file.path;
-    console.log(`File path: ${req.file.path}`)
-    console.log(`File: ${req.file}`)
-    console.log(`File buffer: ${req.file.buffer}`);
-    console.log(`File size: ${req.file.size}`);
 
     const response: Transcription = await openai.audio.transcriptions.create({
       file: fs.createReadStream(audioPath),
