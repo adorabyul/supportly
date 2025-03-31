@@ -2,7 +2,7 @@ const url = import.meta.env.VITE_BACKEND_URL;
 
 export const sendAudio = async (audioBlob: Blob): Promise<string> => {
 
-    const audioFile = new File([audioBlob], 'audio.wav', {type: 'audio/wav'})
+    const audioFile = new File([audioBlob], 'audio.mp3', {type: 'audio/mp3'})
     const formData = new FormData();
     formData.append('audio', audioFile);
   
