@@ -28,6 +28,8 @@ This is a proof of concept chatbot built using Node.js, Express, Vue.js, MySQL, 
      * Whisper: For transcribing audio recordings to text.
 
      * text-embedding-ada-002: For converting text into vectors and comparing user input with stored FAQ vectors.
+       
+  * WebSockets: For quick, real-time communication.
 
 ## License
 
