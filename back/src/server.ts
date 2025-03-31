@@ -18,10 +18,15 @@ const server = http.createServer(app);
 const wss = new WebSocketServer({ server });
 const PORT = process.env.PORT || 3000;
 
+const uploadDir = 'uploads';
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+}
+
 
 const storage = multer.diskStorage({
   destination: (_req, _file, cb) => {
-    cb(null, 'uploads/');
+    cb(null, `${uploadDir}/`);
   },
   filename: (_req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
@@ -65,8 +70,6 @@ app.post("/transcribe", upload.single("audio"), async (req: Request, res: Respon
     }
 
     const audioPath = req.file.path;
-    console.log(audioPath);
-    console.log(req.file.mimetype)
 
     const response: Transcription = await openai.audio.transcriptions.create({
       file: fs.createReadStream(audioPath),
