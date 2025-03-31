@@ -70,11 +70,16 @@ app.post("/transcribe", upload.single("audio"), async (req: Request, res: Respon
     }
 
     const audioPath = req.file.path;
+    console.log(`File path: ${req.file.path}`)
+    console.log(`File: ${req.file}`)
+    console.log(`File buffer: ${req.file.buffer}`);
+    console.log(`File size: ${req.file.size}`);
 
     const response: Transcription = await openai.audio.transcriptions.create({
       file: fs.createReadStream(audioPath),
-      model: "whisper-1",
+      model: "whisper-large",
     });
+    console.log(`Response: ${response.text}`)
 
     const botReply: any = await findMostSimilarFaq(response.text);
 
