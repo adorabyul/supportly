@@ -4,7 +4,7 @@ export const sendAudio = async (audioBlob: Blob): Promise<string> => {
 
     const audioFile = new File([audioBlob], 'audio.mp3', {type: 'audio/mp3'})
     const formData = new FormData();
-    formData.append('audio', audioFile);
+    formData.append('file', audioFile);
   
     try {
       const response = await fetch(`${url}/transcribe`, {
