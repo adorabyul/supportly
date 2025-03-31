@@ -75,7 +75,6 @@ app.post("/transcribe", upload.single("file"), async (req: Request, res: Respons
       file: fs.createReadStream(audioPath),
       model: "whisper-1",
     });
-    console.log(`Response: ${response.text}`)
 
     const botReply: any = await findMostSimilarFaq(response.text);
 
