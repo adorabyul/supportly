@@ -5,6 +5,8 @@ This is a proof of concept chatbot built using Node.js, Express, Vue.js, MySQL, 
 
 Since this project was built in quite a small timeframe, functionality was prioritized over styling.
 
+Deployment: https://supportlychat.netlify.app/
+
 ## Features
 
   * Chatbot Powered by OpenAI: The chatbot utilizes OpenAI's ChatGPT API to provide intelligent and natural conversation flow with users.
