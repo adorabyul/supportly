@@ -9,12 +9,15 @@ import multer from "multer";
 import OpenAI from "openai";
 import { Transcription } from "openai/resources/audio/transcriptions";
 import path from "path";
+const http = require('http');
 
 dotenv.config();
 
-const wss = new WebSocketServer({ port: Number(process.env.WEBSOCKET_PORT) });
 const app = express();
-const PORT = process.env.API_PORT || 3000;
+const server = http.createServer(app);
+const wss = new WebSocketServer({ server });
+const PORT = process.env.PORT || 3000;
+
 
 const storage = multer.diskStorage({
   destination: (_req, _file, cb) => {
@@ -81,6 +84,6 @@ app.post("/transcribe", upload.single("audio"), async (req: Request, res: Respon
   }
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
