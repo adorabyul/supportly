@@ -39,7 +39,6 @@ const convertAudioToMp3 = async (audioBlob: Blob): Promise<Blob> => {
 
     try {
       await ffmpeg.readFile(inputName);
-      console.log("Input file exists in memory.");
   } catch {
       throw new Error("Input file was not written to FFmpeg.");
   }
@@ -55,7 +54,6 @@ const convertAudioToMp3 = async (audioBlob: Blob): Promise<Blob> => {
     let data;
     try {
         data = await ffmpeg.readFile(outputName);
-        console.log("Output file successfully created.");
     } catch {
         throw new Error("Output file was not created.");
     }
