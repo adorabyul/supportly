@@ -180,6 +180,7 @@ input {
   font-optical-sizing: auto;
   font-weight: 350;
   font-style: normal;
+  font-size: 16px;
 }
 
 .record {
