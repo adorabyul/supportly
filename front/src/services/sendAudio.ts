@@ -1,3 +1,5 @@
+const url = import.meta.env.VITE_BACKEND_URL;
+
 export const sendAudio = async (audioBlob: Blob): Promise<string> => {
 
     const audioFile = new File([audioBlob], 'audio.wav', {type: 'audio/wav'})
@@ -5,7 +7,7 @@ export const sendAudio = async (audioBlob: Blob): Promise<string> => {
     formData.append('audio', audioFile);
   
     try {
-      const response = await fetch('http://localhost:3000/transcribe', {
+      const response = await fetch(`${url}/transcribe`, {
         method: 'POST',
         body: formData,
       });

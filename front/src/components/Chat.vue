@@ -17,9 +17,10 @@
     let timeoutId = 15000;
     let stream: MediaStream | null = null;
     let wsService: WebSocketService | null = null;
+    const wsUrl = import.meta.env.VITE_WEBSOCKET_URL;
 
     onMounted(() => {
-      wsService = new WebSocketService("ws://localhost:5000");
+      wsService = new WebSocketService(wsUrl);
       wsService.setOnMessageCallback((message: string) => {
         messages.value.push({text: message, sender: 'bot'});
         isDisabled.value = false;
