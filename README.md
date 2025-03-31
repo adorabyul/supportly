@@ -40,6 +40,7 @@ Deployment: https://supportlychat.netlify.app/
 The chatbot uses a text embedding system to match user queries with predefined FAQs. When a user asks a question, the chatbot converts the input text into an embedding and compares it with stored FAQ embeddings. If a close enough match is found, the corresponding FAQ answer is provided.
 
 If you receive an FAQ response, it means that your query had an embedding similar to one of the stored FAQs.
+
 The FAQ questions are just examples and not related to the project itself, they only demonstrate how text embedding works.
 
 
