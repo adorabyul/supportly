@@ -1,7 +1,7 @@
 # Supportly, An AI-driven Customer Support Chatbot - Proof of Concept
 
 
-This is a proof of concept chatbot built using Node.js, Express, Vue.js, MySQL, and integrates OpenAI’s GPT-3.5 (ChatGPT), Whisper (for audio transcription), and text-embedding-ada-002 (for semantic text embeddings). While the chatbot mimics a customer support interface, it is not intended for real customer service use. This project is built to demonstrate my skills and the potential of using AI models for conversational interactions.
+This is a proof of concept chatbot written in TypeScript and built using Node.js, Express, Vue.js, MySQL, and integrates OpenAI’s GPT-3.5 (ChatGPT), Whisper (for audio transcription), and text-embedding-ada-002 (for semantic text embeddings). While the chatbot mimics a customer support interface, it is not intended for real customer service use. This project is built to demonstrate my skills and the potential of using AI models for conversational interactions.
 
 Since this project was built in quite a small timeframe, functionality was prioritized over styling.
 
