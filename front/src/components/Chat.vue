@@ -136,11 +136,11 @@ const toggleRecording = () => {
           @keyup.enter="sendMessage"
           v-model="newMessage"
           >
-          <button @click="toggleRecording" class="record">
+          <button :disabled="isDisabled" @click="toggleRecording" class="record">
             <img v-if="isRecording" src="../assets/stop_recording.svg" alt="Recording"/>
             <img v-else src="../assets/mic.svg" alt="Start Recording"/>
           </button>
-          <button class="send" @click="sendMessage" :disabled="isDisabled">➤</button>
+          <button class="send" @click="sendMessage" :disabled="isDisabled"><img v-if="isDisabled" src="../assets/spinning-dots.svg" alt="Loading"></img><span v-else>➤</span></button>
         </div>
         
     </div>
