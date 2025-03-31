@@ -1,5 +1,5 @@
-const { FFmpeg } = await import('@ffmpeg/ffmpeg');
-const { fetchFile } = await import('@ffmpeg/util');
+import { FFmpeg } from '@ffmpeg/ffmpeg';
+import { fetchFile } from '@ffmpeg/util';
 const url = import.meta.env.VITE_BACKEND_URL;
 
 export const sendAudio = async (audioBlob: Blob): Promise<string> => {
@@ -36,7 +36,7 @@ const convertAudioToMp3 = async (audioBlob: Blob): Promise<Blob> => {
 
     const inputData = await fetchFile(audioBlob);
     await ffmpeg.writeFile(inputName, inputData);
-    
+
     try {
       await ffmpeg.readFile(inputName);
       console.log("Input file exists in memory.");
