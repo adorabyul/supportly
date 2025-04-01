@@ -140,7 +140,7 @@ const toggleRecording = () => {
             <img v-if="isRecording" src="../assets/stop_recording.svg" alt="Recording"/>
             <img v-else src="../assets/mic.svg" alt="Start Recording"/>
           </button>
-          <button class="send" @click="sendMessage" :disabled="isDisabled"><img v-if="isDisabled" src="../assets/spinning-dots.svg" alt="Loading"></img><span v-else>➤</span></button>
+          <button class="send" @click="sendMessage" :disabled="isDisabled || (newMessage.length < 1 && !audioUrl)"><img v-if="isDisabled" src="../assets/spinning-dots.svg" alt="Loading"></img><span v-else>➤</span></button>
         </div>
         
     </div>
@@ -199,7 +199,7 @@ img {
   color: white;
   width: 15%;
   padding: 0.5em;
-  background-color: rgb(137, 137, 240);
+  background-color: #619CF2;
   transition-duration: 150ms;
   border-bottom-right-radius: 0.4em;
 }
@@ -208,7 +208,7 @@ img {
 }
 
 .bot {
-  background-color: #b4b3b3;
+  background-color: #E2E6E9;
   border-radius: 0.3em;
   padding: 0.3em;
   margin-left: 0.2em;
@@ -218,7 +218,7 @@ img {
 }
 
 .user {
-  background-color: #4663ac;
+  background-color: #619CF2;
   color: white;
   border-radius: 0.3em;
   padding: 0.3em;
@@ -237,7 +237,7 @@ img {
 }
 
 .user_audio_long {
-  background-color: #4663ac;
+  background-color: #619CF2;
   color: white;
   border-radius: 0.3em;
   padding: 0.3em;
@@ -256,7 +256,7 @@ img {
   color: black;
 }
 .user_audio_short {
-  background-color: #4663ac;
+  background-color: #619CF2;
   color: white;
   border-radius: 0.3em;
   padding: 0.3em;
