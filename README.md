@@ -5,8 +5,6 @@ This is a proof of concept chatbot written in TypeScript and built using Node.js
 
 Since this project was built in quite a small timeframe, functionality was prioritized over styling.
 
-Deployment: https://supportlychat.netlify.app/
-
 ## Features
 
   * Chatbot Powered by OpenAI: The chatbot utilizes OpenAI's ChatGPT API to provide intelligent and natural conversation flow with users.
@@ -64,3 +62,4 @@ The FAQ questions are just examples and not related to the project itself, they 
 ## License
 
 This project is licensed under the MIT License.
+
